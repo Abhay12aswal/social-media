@@ -34,7 +34,7 @@ const Post = ({ post }) => {
     try {
       const action = liked ? "dislike" : "like";
       const res = await axios.get(
-        `https://instaclone-g9h5.onrender.com/api/v1/post/${post._id}/${action}`,
+        `http://localhost:8000/api/v1/post/${post._id}/${action}`,
         { withCredentials: true }
       );
       console.log(res.data);
@@ -95,7 +95,7 @@ const Post = ({ post }) => {
   const deletePostHandler = async () => {
     try {
       const res = await axios.delete(
-        `https://instaclone-g9h5.onrender.com/api/v1/post/delete/${post?._id}`,
+        `http://localhost:8000/api/v1/post/delete/${post?._id}`,
         { withCredentials: true }
       );
       if (res.data.success) {
