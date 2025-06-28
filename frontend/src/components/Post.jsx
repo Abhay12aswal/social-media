@@ -37,13 +37,12 @@ const Post = ({ post }) => {
         `http://localhost:8000/api/v1/post/${post._id}/${action}`,
         { withCredentials: true }
       );
-      console.log(res.data);
       if (res.data.success) {
         const updatedLikes = liked ? postLike - 1 : postLike + 1;
         setPostLike(updatedLikes);
         setLiked(!liked);
 
-        // apne post ko update krunga
+        // update post when liked or unliked
         const updatedPostData = posts.map((p) =>
           p._id === post._id
             ? {
@@ -65,7 +64,7 @@ const Post = ({ post }) => {
   const commentHandler = async () => {
     try {
       const res = await axios.post(
-        `https://instaclone-g9h5.onrender.com/api/v1/post/${post._id}/comment`,
+        `http://localhost:8000/api/v1/post/${post._id}/comment`,
         { text },
         {
           headers: {
@@ -74,7 +73,6 @@ const Post = ({ post }) => {
           withCredentials: true,
         }
       );
-      console.log(res.data);
       if (res.data.success) {
         const updatedCommentData = [...comment, res.data.comment];
         setComment(updatedCommentData);
